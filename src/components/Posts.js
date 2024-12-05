@@ -105,6 +105,8 @@ const Posts = ({ username, initialPostId }) => {
             {/* </Pressable> */}
             <Text className="items-center"> {item.caption}</Text>
           </Text>
+
+          <Text className="text-gray-500 text-sm mt-1">{formatDistanceStrict(new Date(item.createdAt), new Date(), { addSuffix: true })}</Text>
         </Box>
       </Box>
     );
