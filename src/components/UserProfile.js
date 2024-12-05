@@ -31,10 +31,20 @@ const UserProfile = ({ user }) => {
   );
 
   const handlePostPress = (postId) => {
-    navigation.navigate('UserPosts', {
-      username: user.username,
-      initialPostId: postId,
-    });
+    try {
+      navigation.navigate('UserPosts', {
+        username: user.username,
+        initialPostId: postId,
+      });
+    } catch (error) {
+      navigation.navigate('Profile', {
+        screen: 'UserPosts',
+        params: {
+          username: user.username,
+          initialPostId: postId,
+        },
+      });
+    }
   };
 
   return (

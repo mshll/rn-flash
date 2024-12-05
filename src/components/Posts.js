@@ -8,12 +8,14 @@ import { HStack } from '@/components/ui/hstack';
 import { BookmarkIcon, HeartIcon, MessageCircleIcon, SendIcon } from 'lucide-react-native';
 import { Text } from '@/components/ui/text';
 import { Fragment, useEffect, useRef, useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 const Posts = ({ username, initialPostId }) => {
   const flatListRef = useRef(null);
   const [posts, setPosts] = useState(initialPosts.map((post) => ({ ...post, liked: false })));
   const lastTap = useRef(null);
   const DOUBLE_TAP_DELAY = 300;
+  const navigation = useNavigation();
 
   const filteredPosts = username ? posts.filter((post) => post.username === username) : posts;
 
@@ -53,17 +55,23 @@ const Posts = ({ username, initialPostId }) => {
     }
   };
 
+  const handleUserPress = (username) => {
+    navigation.navigate('Profile', { username });
+  };
+
   const renderPost = ({ item }) => {
     const user = profiles.find((profile) => profile.username === item.username);
     return (
       <Box className="w-full bg-white mb-4 flex-1">
-        <Box className="flex-row items-center p-3">
-          <Avatar size="sm">
-            <AvatarFallbackText>{user.username}</AvatarFallbackText>
-            <AvatarImage source={{ uri: user.image }} />
-          </Avatar>
-          <Text className="ml-3 font-semibold">{user.username}</Text>
-        </Box>
+        <Pressable onPress={() => handleUserPress(user.username)}>
+          <Box className="flex-row items-center p-3">
+            <Avatar size="sm">
+              <AvatarFallbackText>{user.username}</AvatarFallbackText>
+              <AvatarImage source={{ uri: user.image }} />
+            </Avatar>
+            <Text className="ml-3 font-semibold">{user.username}</Text>
+          </Box>
+        </Pressable>
 
         <Pressable onPress={() => handleDoubleTap(item.id)}>
           <Image source={{ uri: item.image }} className="w-full aspect-square" resizeMode="cover" />
@@ -91,8 +99,11 @@ const Posts = ({ username, initialPostId }) => {
             </Box>
           </HStack>
 
-          <Text className="color-black">
-            <Text className="font-semibold">{user.username}</Text> {item.caption}
+          <Text className="color-black flex-row items-baseline gap">
+            {/* <Pressable onPress={() => handleUserPress(user.username)}> */}
+            <Text className="font-semibold">{user.username}</Text>
+            {/* </Pressable> */}
+            <Text className="items-center"> {item.caption}</Text>
           </Text>
         </Box>
       </Box>

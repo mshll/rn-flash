@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import Home from '@/src/screens/Home';
 import { HeartIcon, MessageCircleIcon, MessageCircleMoreIcon } from 'lucide-react-native';
 import Profile from '@/src/screens/Profile';
+import UserPostsScreen from '@/src/screens/UserPosts';
 
 const Stack = createNativeStackNavigator();
 const HomeNavigation = () => {
@@ -32,6 +33,16 @@ const HomeNavigation = () => {
         name="Profile"
         component={Profile}
         options={{
+          headerTitleStyle: {
+            color: '#4A3428',
+          },
+        }}
+      />
+      <Stack.Screen
+        name="UserPosts"
+        component={UserPostsScreen}
+        options={{
+          title: 'Posts',
           headerTitleStyle: {
             color: '#4A3428',
           },
