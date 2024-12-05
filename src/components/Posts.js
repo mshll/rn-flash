@@ -7,9 +7,21 @@ import { profiles } from '../data/profiles';
 import { HStack } from '@/components/ui/hstack';
 import { BookmarkIcon, HeartIcon, MessageCircleIcon, SendIcon } from 'lucide-react-native';
 import { Text } from '@/components/ui/text';
-import { Fragment } from 'react';
+import { Fragment, useEffect, useRef } from 'react';
 
-const Posts = () => {
+const Posts = ({ username, initialPostId }) => {
+  const flatListRef = useRef(null);
+  const filteredPosts = username ? posts.filter((post) => post.username === username) : posts;
+
+  useEffect(() => {
+    if (initialPostId && flatListRef.current) {
+      const postIndex = filteredPosts.findIndex((post) => post.id === initialPostId);
+      if (postIndex !== -1) {
+        flatListRef.current.scrollToIndex({ index: postIndex, animated: true });
+      }
+    }
+  }, [initialPostId]);
+
   const renderPost = ({ item }) => {
     const user = profiles.find((profile) => profile.username === item.username);
     return (
@@ -24,7 +36,7 @@ const Posts = () => {
 
         <Image source={{ uri: item.image }} className="w-full aspect-square" resizeMode="cover" />
 
-        <Box className="p-3 ">
+        <Box className="p-3">
           <HStack className="mb-2 gap-4">
             <HStack className="flex-1 gap-4">
               <Box className="flex-row gap-1 justify-center items-center">
@@ -47,20 +59,29 @@ const Posts = () => {
           <Text className="color-black">
             <Text className="font-semibold">{user.username}</Text> {item.caption}
           </Text>
-
-          <Text className="text-gray-500 text-sm mt-1">{formatDistanceStrict(new Date(), new Date(item.createdAt), { addSuffix: true })}</Text>
         </Box>
       </Box>
     );
   };
 
+  const onScrollToIndexFailed = (info) => {
+    const wait = new Promise((resolve) => setTimeout(resolve, 500));
+    wait.then(() => {
+      if (flatListRef.current) {
+        flatListRef.current.scrollToIndex({ index: info.index, animated: true });
+      }
+    });
+  };
+
   return (
     <FlatList
-      data={posts}
+      ref={flatListRef}
+      data={filteredPosts}
       renderItem={renderPost}
       keyExtractor={(item) => item.id.toString()}
       showsVerticalScrollIndicator={false}
-      scrollEnabled={false}
+      scrollEnabled={username ? true : false}
+      onScrollToIndexFailed={onScrollToIndexFailed}
     />
   );
 };

@@ -9,11 +9,13 @@ import { MessageCircleIcon, GridIcon, PlaySquareIcon, BookmarkIcon, PlusIcon, Tv
 import { posts } from '../data/posts';
 import UserPosts from './UserPosts';
 import { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 const UserProfile = ({ user }) => {
   const [activeTab, setActiveTab] = useState('posts');
   const userPosts = posts.filter((post) => post.username === user.username);
-  const [isFollowing, setIsFollowing] = useState(false); // This should come from your app's state management
+  const [isFollowing, setIsFollowing] = useState(false);
+  const navigation = useNavigation();
 
   const Stats = ({ label, value }) => (
     <VStack className="items-center">
@@ -27,6 +29,13 @@ const UserProfile = ({ user }) => {
       <Icon size={24} color={isActive ? '#000' : '#666'} style={{ alignSelf: 'center' }} />
     </Pressable>
   );
+
+  const handlePostPress = (postId) => {
+    navigation.navigate('UserPosts', {
+      username: user.username,
+      initialPostId: postId,
+    });
+  };
 
   return (
     <Box className="flex-1 w-full">
@@ -68,7 +77,7 @@ const UserProfile = ({ user }) => {
         <TabButton icon={SquareUserIcon} isActive={activeTab === 'tagged'} onPress={() => setActiveTab('tagged')} />
       </HStack>
 
-      {activeTab === 'posts' && <UserPosts posts={userPosts} />}
+      {activeTab === 'posts' && <UserPosts posts={userPosts} onPostPress={handlePostPress} />}
       {activeTab === 'videos' && (
         <Box className="flex-1 items-center justify-center p-4">
           <Text className="text-gray-500">No videos yet</Text>
