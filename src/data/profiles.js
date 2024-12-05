@@ -29,17 +29,17 @@ export const profiles = [
   },
   {
     id: 5,
-    name: 'Aziz',
-    username: 'Octowl',
-    image: 'https://github.com/Octowl.png',
-    bio: 'Jazz musician & vinyl enthusiast',
-  },
-  {
-    id: 6,
     name: 'Abdullah',
     username: 'AbdullahAlh',
     image: 'https://github.com/AbdullahAlh.png',
     bio: 'Foodie exploring world cuisines',
+  },
+  {
+    id: 6,
+    name: 'Aziz',
+    username: 'Octowl',
+    image: 'https://github.com/Octowl.png',
+    bio: 'Jazz musician & vinyl enthusiast',
   },
   {
     id: 7,

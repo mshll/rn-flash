@@ -5,7 +5,16 @@ import { Text } from '@/components/ui/text';
 import { HStack } from '@/components/ui/hstack';
 import { VStack } from '@/components/ui/vstack';
 import { Button, ButtonText } from '@/components/ui/button';
-import { MessageCircleIcon, GridIcon, PlaySquareIcon, BookmarkIcon, PlusIcon, TvMinimalPlayIcon, SquareUserIcon } from 'lucide-react-native';
+import {
+  MessageCircleIcon,
+  GridIcon,
+  PlaySquareIcon,
+  BookmarkIcon,
+  PlusIcon,
+  TvMinimalPlayIcon,
+  SquareUserIcon,
+  ShareIcon,
+} from 'lucide-react-native';
 import { posts } from '../data/posts';
 import UserPosts from './UserPosts';
 import { useState } from 'react';
@@ -16,6 +25,7 @@ const UserProfile = ({ user }) => {
   const userPosts = posts.filter((post) => post.username === user.username);
   const [isFollowing, setIsFollowing] = useState(false);
   const navigation = useNavigation();
+  const isOwnProfile = user.username === 'mshll';
 
   const Stats = ({ label, value }) => (
     <VStack className="items-center">
@@ -73,12 +83,25 @@ const UserProfile = ({ user }) => {
           </VStack>
 
           <HStack className="gap-2">
-            <Button className="flex-1" action={isFollowing ? 'positive' : 'primary'} onPress={() => setIsFollowing(!isFollowing)}>
-              <ButtonText>{isFollowing ? 'Following' : 'Follow'}</ButtonText>
-            </Button>
-            <Button variant="outline" className="flex-1">
-              <ButtonText>Message</ButtonText>
-            </Button>
+            {isOwnProfile ? (
+              <>
+                <Button className="flex-1">
+                  <ButtonText>Edit Profile</ButtonText>
+                </Button>
+                <Button variant="outline" className="flex-1">
+                  <ButtonText>Share Profile</ButtonText>
+                </Button>
+              </>
+            ) : (
+              <>
+                <Button className="flex-1" action={isFollowing ? 'positive' : 'primary'} onPress={() => setIsFollowing(!isFollowing)}>
+                  <ButtonText>{isFollowing ? 'Following' : 'Follow'}</ButtonText>
+                </Button>
+                <Button variant="outline" className="flex-1">
+                  <ButtonText>Message</ButtonText>
+                </Button>
+              </>
+            )}
           </HStack>
         </Box>
 
