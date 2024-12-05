@@ -1,8 +1,9 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
-import Ionicons from '@expo/vector-icons/Ionicons';
 import Home from '@/src/screens/Home';
+import { HeartIcon, MessageCircleIcon, MessageCircleMoreIcon } from 'lucide-react-native';
+import Profile from '@/src/screens/Profile';
 
 const Stack = createNativeStackNavigator();
 const HomeNavigation = () => {
@@ -13,47 +14,29 @@ const HomeNavigation = () => {
         name="Home"
         component={Home}
         options={{
-          headerBackVisible: false,
-          headerShadowVisible: false,
-          headerTitleStyle: {
-            color: '#4A3428',
-          },
-        }}
-      />
-      {/* <Stack.Screen
-        name="Welcome"
-        component={Onboarding}
-        options={{
-          headerShadowVisible: false,
-          // headerRight: () => (
-          //   <TouchableOpacity onPress={() => navigation.navigate("Home")}>
-          //     <Text>Skip</Text>
-          //   </TouchableOpacity>
-          // ),
+          headerLeft: () => <Image source={require('@/assets/instagram-logo.png')} style={{ width: 120, height: 40, resizeMode: 'contain' }} />,
+          headerRight: () => (
+            <View style={{ flexDirection: 'row', gap: 20 }}>
+              <TouchableOpacity>
+                <HeartIcon size={24} color="black" />
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <MessageCircleMoreIcon size={24} color="black" />
+              </TouchableOpacity>
+            </View>
+          ),
+          headerTitle: '',
         }}
       />
       <Stack.Screen
-        name="Brew Details"
-        component={BrewDetails}
+        name="Profile"
+        component={Profile}
         options={{
-          headerShadowVisible: false,
-          // headerLeft: () => (
-          //   <TouchableOpacity
-          //     onPress={() => navigation.goBack()}
-          //     style={{
-          //       flexDirection: "row",
-          //       alignItems: "center",
-          //       gap: 5,
-          //     }}
-          //   >
-          //     <Ionicons name="arrow-back" size={24} color="#4A3428" />
-          //   </TouchableOpacity>
-          // ),
           headerTitleStyle: {
             color: '#4A3428',
           },
         }}
-      /> */}
+      />
     </Stack.Navigator>
   );
 };

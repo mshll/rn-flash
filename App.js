@@ -6,7 +6,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import BottomNav from "./src/navigation/BottomNav/BottomNav";
 import Camera from "./src/screens/Camera";
 import { SafeAreaView } from "react-native-safe-area-context";
-
+ 
 export default function App() {
   return (
     <GluestackUIProvider mode="light">
