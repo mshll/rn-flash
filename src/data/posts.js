@@ -1,7 +1,7 @@
 export const posts = [
   {
     id: 1,
-    username: 'mshll',
+    username: 'meshal',
     image: 'https://images.unsplash.com/photo-1533105079780-92b9be482077',
     caption: "Best pasta I've ever had! 🍝 Little hidden gem in Rome",
     likes: 342,
@@ -64,7 +64,7 @@ export const posts = [
   },
   {
     id: 8,
-    username: 'mshll',
+    username: 'meshal',
     image: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800',
     caption: 'Road trip vibes 🚗',
     likes: 392,
@@ -127,7 +127,7 @@ export const posts = [
   },
   {
     id: 15,
-    username: 'mshll',
+    username: 'meshal',
     image: 'https://images.unsplash.com/photo-1534695038556-69c7335b799c',
     caption: 'Sunset yoga by the beach 🌅',
     likes: 512,

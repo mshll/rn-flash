@@ -25,7 +25,7 @@ const UserProfile = ({ user }) => {
   const userPosts = posts.filter((post) => post.username === user.username);
   const [isFollowing, setIsFollowing] = useState(false);
   const navigation = useNavigation();
-  const isOwnProfile = user.username === 'mshll';
+  const isOwnProfile = user.username === 'meshal';
 
   const Stats = ({ label, value }) => (
     <VStack className="items-center">

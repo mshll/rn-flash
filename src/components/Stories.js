@@ -1,25 +1,34 @@
 import { Box } from '@/components/ui/box';
-import { Text, View, FlatList } from 'react-native';
+import { Text, View, FlatList, Pressable } from 'react-native';
 import { Avatar, AvatarBadge, AvatarFallbackText, AvatarImage } from '@/components/ui/avatar';
 import { profiles } from '../data/profiles';
+import { useNavigation } from '@react-navigation/native';
 
 const Stories = () => {
+  const navigation = useNavigation();
+
+  const handleStoryPress = (username) => {
+    navigation.navigate('Profile', { username });
+  };
+
   const renderStory = ({ item }) => (
-    <View className="mr-3 items-center">
-      <Box
-        className="rounded-full p-[2px]"
-        style={{
-          backgroundColor: '#E1306C',
-          backgroundImage: 'linear-gradient(45deg, #FCAF45, #E1306C, #C13584)',
-        }}
-      >
-        <Avatar size="lg" className="border border-white">
-          <AvatarFallbackText>{item.name.charAt(0)}</AvatarFallbackText>
-          <AvatarImage source={{ uri: item.image }} className="bg-primary-500" />
-        </Avatar>
-      </Box>
-      <Text className="text-sm mt-1">{item.username}</Text>
-    </View>
+    <Pressable onPress={() => handleStoryPress(item.username)}>
+      <View className="mr-3 items-center">
+        <Box
+          className="rounded-full p-[2px]"
+          style={{
+            backgroundColor: '#E1306C',
+            backgroundImage: 'linear-gradient(45deg, #FCAF45, #E1306C, #C13584)',
+          }}
+        >
+          <Avatar size="lg" className="border border-white">
+            <AvatarFallbackText>{item.name.charAt(0)}</AvatarFallbackText>
+            <AvatarImage source={{ uri: item.image }} className="bg-primary-500" />
+          </Avatar>
+        </Box>
+        <Text className="text-sm mt-1">{item.username}</Text>
+      </View>
+    </Pressable>
   );
 
   return (

@@ -2,7 +2,7 @@ export const profiles = [
   {
     id: 1,
     name: 'Meshal',
-    username: 'mshll',
+    username: 'meshal',
     image: 'https://github.com/mshll.png',
     bio: 'Coffee enthusiast & amateur chef',
   },
