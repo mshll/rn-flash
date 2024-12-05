@@ -1,5 +1,5 @@
 import { Box } from '@/components/ui/box';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { Text, View, FlatList } from 'react-native';
 import { Avatar, AvatarBadge, AvatarFallbackText, AvatarImage } from '@/components/ui/avatar';
 import { profiles } from '../data/profiles';
 
@@ -15,7 +15,7 @@ const Stories = () => {
   );
 
   return (
-    <Box className="w-full">
+    <Box className="w-screen overflow-hidden">
       <FlatList
         data={profiles}
         renderItem={renderStory}

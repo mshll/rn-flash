@@ -7,6 +7,7 @@ import { profiles } from '../data/profiles';
 import { HStack } from '@/components/ui/hstack';
 import { BookmarkIcon, HeartIcon, MessageCircleIcon, SendIcon } from 'lucide-react-native';
 import { Text } from '@/components/ui/text';
+import { Fragment } from 'react';
 
 const Posts = () => {
   const renderPost = ({ item }) => {
@@ -15,7 +16,7 @@ const Posts = () => {
       <Box className="w-full bg-white mb-4 flex-1">
         <Box className="flex-row items-center p-3">
           <Avatar size="sm">
-            <AvatarFallbackText>{user.username.charAt(0)}</AvatarFallbackText>
+            <AvatarFallbackText>{user.username}</AvatarFallbackText>
             <AvatarImage source={{ uri: user.image }} />
           </Avatar>
           <Text className="ml-3 font-semibold">{user.username}</Text>
@@ -54,9 +55,13 @@ const Posts = () => {
   };
 
   return (
-    <Box className="w-full">
-      <FlatList data={posts} renderItem={renderPost} keyExtractor={(item) => item.id.toString()} showsVerticalScrollIndicator={false} />
-    </Box>
+    <FlatList
+      data={posts}
+      renderItem={renderPost}
+      keyExtractor={(item) => item.id.toString()}
+      showsVerticalScrollIndicator={false}
+      scrollEnabled={false}
+    />
   );
 };
 
