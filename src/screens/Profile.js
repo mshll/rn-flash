@@ -5,7 +5,6 @@ import UserProfile from '../components/UserProfile';
 import { profiles } from '../data/profiles';
 
 const Profile = () => {
-  // Using the first profile as an example
   const currentUser = profiles[0];
 
   return (

@@ -55,7 +55,7 @@ export const posts = [
   },
   {
     id: 7,
-    username: 'azizatk',
+    username: 'AbdullahAlh',
     image: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622',
     caption: 'First time making sourdough bread! 🍞',
     likes: 476,
@@ -100,7 +100,7 @@ export const posts = [
   },
   {
     id: 12,
-    username: 'CompileMyLife',
+    username: 'careless10',
     image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438',
     caption: 'New personal record at the gym today! 💪',
     likes: 623,
@@ -118,7 +118,7 @@ export const posts = [
   },
   {
     id: 14,
-    username: 'azizatk',
+    username: 'AbdullahAlh',
     image: 'https://images.unsplash.com/photo-1484723091739-30a097e8f929',
     caption: 'Weekend pancake tradition 🥞',
     likes: 389,

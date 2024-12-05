@@ -1,5 +1,5 @@
 import { Box } from '@/components/ui/box';
-import { View, FlatList, Pressable } from 'react-native';
+import { View, FlatList, Pressable, ScrollView } from 'react-native';
 import { Avatar, AvatarBadge, AvatarFallbackText, AvatarImage } from '@/components/ui/avatar';
 import { Text } from '@/components/ui/text';
 import { HStack } from '@/components/ui/hstack';
@@ -39,55 +39,57 @@ const UserProfile = ({ user }) => {
 
   return (
     <Box className="flex-1 w-full">
-      <Box className="p-4">
-        <HStack className="items-center mb-3">
-          <Avatar size="xl">
-            <AvatarFallbackText>{user.name}</AvatarFallbackText>
-            <AvatarImage source={{ uri: user.image }} />
-            <AvatarBadge className="bg-blue-500 items-center justify-center">
-              <PlusIcon size={14} color="#fff" strokeWidth={3} />
-            </AvatarBadge>
-          </Avatar>
+      <ScrollView>
+        <Box className="p-4">
+          <HStack className="items-center mb-3">
+            <Avatar size="xl">
+              <AvatarFallbackText>{user.name}</AvatarFallbackText>
+              <AvatarImage source={{ uri: user.image }} />
+              <AvatarBadge className="bg-blue-500 items-center justify-center">
+                <PlusIcon size={14} color="#fff" strokeWidth={3} />
+              </AvatarBadge>
+            </Avatar>
 
-          <HStack className="flex-1 justify-around ml-4">
-            <Stats label="Posts" value={userPosts.length} />
-            <Stats label="Followers" value="2.5K" />
-            <Stats label="Following" value="1.2K" />
+            <HStack className="flex-1 justify-around ml-4">
+              <Stats label="Posts" value={userPosts.length} />
+              <Stats label="Followers" value="2.5K" />
+              <Stats label="Following" value="1.2K" />
+            </HStack>
           </HStack>
+
+          <VStack className="mb-4">
+            <Text className="font-bold text-black text-lg">{user.name}</Text>
+            <Text className="text-gray-600">{user.bio}</Text>
+          </VStack>
+
+          <HStack className="gap-2">
+            <Button className="flex-1" action={isFollowing ? 'positive' : 'primary'} onPress={() => setIsFollowing(!isFollowing)}>
+              <ButtonText>{isFollowing ? 'Following' : 'Follow'}</ButtonText>
+            </Button>
+            <Button variant="outline" className="flex-1">
+              <ButtonText>Message</ButtonText>
+            </Button>
+          </HStack>
+        </Box>
+
+        <HStack className="border-t border-gray-200">
+          <TabButton icon={GridIcon} isActive={activeTab === 'posts'} onPress={() => setActiveTab('posts')} />
+          <TabButton icon={TvMinimalPlayIcon} isActive={activeTab === 'videos'} onPress={() => setActiveTab('videos')} />
+          <TabButton icon={SquareUserIcon} isActive={activeTab === 'tagged'} onPress={() => setActiveTab('tagged')} />
         </HStack>
 
-        <VStack className="mb-4">
-          <Text className="font-bold text-black text-lg">{user.name}</Text>
-          <Text className="text-gray-600">{user.bio}</Text>
-        </VStack>
-
-        <HStack className="gap-2">
-          <Button className="flex-1" action={isFollowing ? 'positive' : 'primary'} onPress={() => setIsFollowing(!isFollowing)}>
-            <ButtonText>{isFollowing ? 'Following' : 'Follow'}</ButtonText>
-          </Button>
-          <Button variant="outline" className="flex-1">
-            <ButtonText>Message</ButtonText>
-          </Button>
-        </HStack>
-      </Box>
-
-      <HStack className="border-t border-gray-200">
-        <TabButton icon={GridIcon} isActive={activeTab === 'posts'} onPress={() => setActiveTab('posts')} />
-        <TabButton icon={TvMinimalPlayIcon} isActive={activeTab === 'videos'} onPress={() => setActiveTab('videos')} />
-        <TabButton icon={SquareUserIcon} isActive={activeTab === 'tagged'} onPress={() => setActiveTab('tagged')} />
-      </HStack>
-
-      {activeTab === 'posts' && <UserPosts posts={userPosts} onPostPress={handlePostPress} />}
-      {activeTab === 'videos' && (
-        <Box className="flex-1 items-center justify-center p-4">
-          <Text className="text-gray-500">No videos yet</Text>
-        </Box>
-      )}
-      {activeTab === 'tagged' && (
-        <Box className="flex-1 items-center justify-center p-4">
-          <Text className="text-gray-500">No tagged posts</Text>
-        </Box>
-      )}
+        {activeTab === 'posts' && <UserPosts posts={userPosts} onPostPress={handlePostPress} />}
+        {activeTab === 'videos' && (
+          <Box className="flex-1 items-center justify-center p-4">
+            <Text className="text-gray-500">No videos yet</Text>
+          </Box>
+        )}
+        {activeTab === 'tagged' && (
+          <Box className="flex-1 items-center justify-center p-4">
+            <Text className="text-gray-500">No tagged posts</Text>
+          </Box>
+        )}
+      </ScrollView>
     </Box>
   );
 };

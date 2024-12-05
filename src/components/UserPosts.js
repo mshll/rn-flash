@@ -14,7 +14,14 @@ const UserPosts = ({ posts, onPostPress }) => {
   );
 
   return (
-    <FlatList data={posts} renderItem={renderPost} keyExtractor={(item) => item.id.toString()} numColumns={3} showsVerticalScrollIndicator={false} />
+    <FlatList
+      data={posts}
+      renderItem={renderPost}
+      keyExtractor={(item) => item.id.toString()}
+      numColumns={3}
+      showsVerticalScrollIndicator={false}
+      scrollEnabled={false}
+    />
   );
 };
 

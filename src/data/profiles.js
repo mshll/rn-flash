@@ -28,13 +28,6 @@ export const profiles = [
     bio: 'Passionate about street art & urban culture',
   },
   {
-    id: 5,
-    name: 'Ibrahim',
-    username: 'CompileMyLife',
-    image: 'https://github.com/CompileMyLife.png',
-    bio: 'Bookworm & vintage collector',
-  },
-  {
     id: 6,
     name: 'Aziz',
     username: 'Octowl',
@@ -43,9 +36,16 @@ export const profiles = [
   },
   {
     id: 7,
-    name: 'Aziz',
-    username: 'azizatk',
-    image: 'https://github.com/azizatk.png',
+    name: 'Abdullah',
+    username: 'AbdullahAlh',
+    image: 'https://github.com/AbdullahAlh.png',
     bio: 'Foodie exploring world cuisines',
+  },
+  {
+    id: 5,
+    name: 'Menawer',
+    username: 'careless10',
+    image: 'https://github.com/careless10.png',
+    bio: 'Bookworm & vintage collector',
   },
 ];
