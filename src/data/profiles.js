@@ -1,0 +1,51 @@
+export const profiles = [
+  {
+    id: 1,
+    name: 'Meshal',
+    username: 'mshll',
+    image: 'https://github.com/mshll.png',
+    bio: 'Software Developer',
+  },
+  {
+    id: 2,
+    name: 'Fajri',
+    username: 'fajri1997',
+    image: 'https://github.com/fajri1997.png',
+    bio: 'Tech Enthusiast',
+  },
+  {
+    id: 3,
+    name: 'Yousef',
+    username: 'yousefalm1',
+    image: 'https://github.com/yousefalm1.png',
+    bio: 'Digital Creator',
+  },
+  {
+    id: 4,
+    name: 'Janna',
+    username: 'jannakam',
+    image: 'https://github.com/jannakam.png',
+    bio: 'Photography Lover',
+  },
+  {
+    id: 5,
+    name: 'Ibrahim',
+    username: 'CompileMyLife',
+    image: 'https://github.com/CompileMyLife.png',
+    bio: 'Code Artist',
+  },
+  {
+    id: 6,
+    name: 'Aziz',
+    username: 'Octowl',
+    image: 'https://github.com/Octowl.png',
+    bio: 'Tech Explorer',
+  },
+  {
+    id: 7,
+    name: 'Aziz',
+    username: 'azizatk',
+    image: 'https://github.com/azizatk.png',
+    bio: 'Developer',
+  },
+];

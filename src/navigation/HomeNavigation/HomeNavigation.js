@@ -14,10 +14,6 @@ const HomeNavigation = () => {
         component={Home}
         options={{
           headerBackVisible: false,
-          headerShadowVisible: false,
-          headerTitleStyle: {
-            color: '#4A3428',
-          },
         }}
       />
       {/* <Stack.Screen
